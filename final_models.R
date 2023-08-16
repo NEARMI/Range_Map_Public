@@ -1,8 +1,18 @@
+library(ggplot2)
+library(mgcv)
+library(rgdal)
+library(dplyr)
+library(raster)
+library(voxel)
+library(gridExtra)
+library(terra)
 library(tidyverse)
 
+'%notin%' <- Negate('%in%')
 ### THESE ARE NOT REAL LOCATIONS >>> THIS WILL NOT RECOVER RESULTS FROM PAPER###
 sh.plot <- read.csv("non_geo_data.csv")
 cov <- read.csv("covariate_non_geo.csv")
+
 source("Graphing_Set_up.R")
 
 
@@ -522,6 +532,8 @@ cov <- subset(cov, !is.na(IMI))
 cov <- cov %>% mutate(asp_rad = pi*aspect/180) %>%
   mutate(north = cos(asp_rad), east = sin(asp_rad)) %>%
   mutate(std_HLI = scale(HLI)[,1], std_IMI = scale(IMI)[,1])
+
+pred_weather <- read.csv("weath_cov.csv")
 
 cov <- cbind(cov, pred_weather[,c("ppt3", "temp10")])
 

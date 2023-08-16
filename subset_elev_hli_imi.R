@@ -12,7 +12,7 @@ sites <- matrix(data = NA, nrow = 109, ncol = reps)
 temp_vec <- vector(mode= "numeric", length = 109)
 out <- vector(mode = "numeric", length = reps)
 wiggles <- c(15,35,75)
-## randomly select 109 sites
+## randomly select 127 sites
 
 
 #### takes 21 minutes with reps at 10 000 

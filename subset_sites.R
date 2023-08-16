@@ -1,7 +1,18 @@
+library(ggplot2)
+library(mgcv)
+library(rgdal)
+library(dplyr)
+library(raster)
+library(voxel)
+library(gridExtra)
+library(terra)
+
+pred_weather <- read.csv("weath_cov.csv")
 sh.plot <- read.csv("non_geo_data.csv") ## this is not real location data, this will not replicate paper results
 cov <- read.csv("covariate_non_geo.csv")
 source("Graphing_Set_Up.R")
 source("map_functions.R")
+'%notin%' <- Negate('%in%')
 cov$area <- log(10000)
 
 cov <- cov %>% mutate(asp_rad = pi*aspect/180) %>%
